@@ -6,6 +6,7 @@ import '../widgets/search_bar.dart';
 import '../widgets/empty_state.dart';
 import 'meals_screen.dart';
 import 'recipe_detail_screen.dart';
+import 'favorites_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -97,6 +98,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         backgroundColor: Colors.red.shade700,
         foregroundColor: Colors.white,
         actions: [
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FavoritesScreen(),
+                ),
+              );
+            },
+            tooltip: 'Favorites',
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: TextButton.icon(

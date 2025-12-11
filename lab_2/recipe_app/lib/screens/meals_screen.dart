@@ -138,6 +138,7 @@ class _MealsScreenState extends State<MealsScreen> {
                         itemCount: _filteredMeals.length,
                         itemBuilder: (context, index) {
                           return MealCard(
+                            key: ValueKey(_filteredMeals[index].idMeal),
                             meal: _filteredMeals[index],
                             onTap: () {
                               Navigator.push(

@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'screens/categories_screen.dart';
+import 'services/notification_service.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    await NotificationService().initialize();
+    
+    final notificationService = NotificationService();
+    final scheduledTime = await notificationService.getScheduledTime();
+    if (scheduledTime == null) {
+      await notificationService.scheduleDailyNotification(hour: 9, minute: 0);
+    }
+
   runApp(const MyApp());
 }
 
